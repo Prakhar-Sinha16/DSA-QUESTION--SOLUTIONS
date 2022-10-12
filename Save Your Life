@@ -1,0 +1,35 @@
+// Link for the question on gfg -> https://practice.geeksforgeeks.org/problems/save-your-life4601/1
+
+static String maxSum(String w,char x[],int b[], int n){
+        //code here
+        Map<Character,Integer> map = new HashMap<>();
+        for(int i=0;i<n;i++){
+            map.put(x[i],b[i]);
+        }
+        
+        StringBuilder ans = new StringBuilder();
+        StringBuilder curStr = new StringBuilder();
+        
+        int max=Integer.MIN_VALUE;
+        int cur=0;
+        for(char c : w.toCharArray()){
+            if(map.containsKey(c)){
+                cur+=map.get(c);
+            }else{
+                cur+=c;
+            }
+            curStr.append(c);
+            
+            if(cur>max){
+                max = cur;
+                ans = new StringBuilder(curStr);
+            }
+            
+            if(cur<0){
+                cur=0;
+                curStr = new StringBuilder();
+            }
+        }
+        return ans.toString();
+    }
+
